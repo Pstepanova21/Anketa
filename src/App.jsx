@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Form from "./components/Form/Form";
 
 function App() {
-  const [formAnswers, setFormAnswers] = useState({});
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const navigate = useNavigate();
 
@@ -11,11 +10,7 @@ function App() {
     navigate("/form");
   }, [navigate]);
 
-  const handleSelectForm = (formAnswers) => {
-    setFormAnswers(formAnswers);
-  };
-
-  const sendDataToBackend = async () => {
+  const sendDataToBackend = async (formAnswers) => {
     const formData = new FormData();
 
     Object.entries(formAnswers).forEach(([key, value]) => {
@@ -40,6 +35,7 @@ function App() {
     } catch (error) {
       console.error("Error sending data to backend:", error);
     }
+
     localStorage.removeItem("answersForm");
   };
 
@@ -48,34 +44,11 @@ function App() {
       <Routes>
         <Route
           path="/form"
-          element={
-            <Form
-              sendDataToBackend={sendDataToBackend}
-              handleSelectForm={handleSelectForm}
-            />
-          }
+          element={<Form sendDataToBackend={sendDataToBackend} />}
         />
       </Routes>
       {showSuccessMessage && (
-        <div
-          style={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            background: "white",
-            padding: "20px",
-            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-            borderRadius: "20px",
-            border: "2px solid black",
-            zIndex: 10,
-            color: "black",
-            fontSize: "30px",
-            textAlign: "center",
-          }}
-        >
-          Ваша анкета сохранена
-        </div>
+        <div className="success-message">Ваша анкета сохранена</div>
       )}
     </div>
   );
