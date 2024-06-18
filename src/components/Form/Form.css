@@ -1,8 +1,11 @@
+/* Импортируем шрифт Montserrat */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
 .Form {
   padding: 0 20px;
+  font-family: "Montserrat", sans-serif;
   height: 100vh;
   background-color: white;
-  font-family: "Gropled";
   color: #000;
 }
 
@@ -38,7 +41,7 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-family: "Gropled";
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   color: #000;
   background-color: #fff;
